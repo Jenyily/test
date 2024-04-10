@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Invitation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    #invitation {
+      margin-top: 50px;
+    }
+
+    .gif-container {
+      margin-bottom: 20px;
+    }
+
+    .gif-container iframe {
+      width: 100%;
+      height: auto;
+    }
+
+    #invitation h2 {
+      margin-bottom: 20px;
+    }
+
+    #invitation button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #messageInputContainer {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #messageInput {
+      width: 80%;
+      max-width: 400px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="invitation">
+    <div id="defaultGif" class="gif-container">
+      <iframe src="https://giphy.com/embed/Rm3Nj59SVXvrblfTom" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <h2>Are you coming?</h2>
+    <div id="afterGif" class="gif-container" style="display: none;">
+      <!-- Replaced iframe source URL here -->
+      <iframe src="https://giphy.com/embed/LPBhHit55Xxx03lllW" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <button id="yesButton" onclick="reply('yes')">Yes</button>
+    <button id="noButton" onmouseover="changeButtonPosition()">No</button>
+    <div id="messageInputContainer">
+      <textarea id="messageInput" placeholder="Write your message..."></textarea>
+      <button id="submitButton">Submit</button>
+    </div>
+  </div>
+
+  <audio id="audio" src="Friends-Theme.mp3"></audio>
+
+  <script>
+    var audio = document.getElementById('audio');
+
+    function reply(response) {
+      if (response === 'yes') {
+        document.getElementById('defaultGif').style.display = 'none';
+        document.getElementById('afterGif').style.display = 'block';
+        document.getElementById('messageInputContainer').style.display = 'block';
+        audio.play(); // Play the audio
+        resetButtonPosition(); // Reset button position
+      } else {
+        alert("That's too bad. Maybe next time!");
+      }
+    }
+
+    function changeButtonPosition() {
+      var noButton = document.getElementById('noButton');
+      noButton.style.position = 'relative';
+      var left = Math.floor(Math.random() * 400) - 200; // Random left position between -200px and 200px
+      var top = Math.floor(Math.random() * 400) - 200; // Random top position between -200px and 200px
+      noButton.style.left = left + 'px';
+      noButton.style.top = top + 'px';
+    }
+
+    function resetButtonPosition() {
+      var noButton = document.getElementById('noButton');
+      noButton.style.position = 'static'; // Reset position to default
+    }
+  </script>
+
+</body>
+
+</html>
